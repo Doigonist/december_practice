@@ -1,6 +1,8 @@
 <?php
 require_once('link.php');
 $res = $link -> query("SELECT * FROM `partners_import`");
+$res_products = $link -> query("SELECT * FROM `partner_products_import`");
+$res_products = $res_products -> fetch_all(MYSQLI_ASSOC);
 $res = $res -> fetch_all(MYSQLI_ASSOC);
 ?>
 <table border="1px">
@@ -28,6 +30,7 @@ for($i = 0 ; $i < count($res); $i++){
     echo "<td>" . $res[$i]['address_partners'] . '</td>';
     echo "<td>" . $res[$i]['INN_partners'] . '</td>';
     echo "<td>" . $res[$i]['rating_partners'] . '</td>';
+
 }
 ?>
 </table>
