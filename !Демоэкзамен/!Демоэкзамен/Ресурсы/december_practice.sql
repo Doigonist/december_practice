@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 02 2024 г., 18:10
+-- Время создания: Дек 02 2024 г., 19:30
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
@@ -53,7 +53,7 @@ INSERT INTO `material_type_import` (`id_material_type`, `material_type`, `procen
 CREATE TABLE `partners_import` (
   `id_partners` int(1) NOT NULL,
   `type_partner` varchar(3) DEFAULT NULL,
-  `name_partners` varchar(16) DEFAULT NULL,
+  `name_partners` varchar(255) DEFAULT NULL,
   `director_partners` varchar(30) DEFAULT NULL,
   `email_partners` varchar(24) DEFAULT NULL,
   `tel_partners` varchar(13) DEFAULT NULL,
@@ -81,8 +81,8 @@ INSERT INTO `partners_import` (`id_partners`, `type_partner`, `name_partners`, `
 
 CREATE TABLE `partner_products_import` (
   `id_partner_products` int(2) NOT NULL,
-  `products_partner_products` int(1) DEFAULT NULL,
-  `partner_name_partner_products` int(1) DEFAULT NULL,
+  `products_partner_products` int(255) DEFAULT NULL,
+  `partner_name_partner_products` int(255) DEFAULT NULL,
   `product_count_partner_products` int(6) DEFAULT NULL,
   `date_of_sell_partner_products` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -117,7 +117,7 @@ INSERT INTO `partner_products_import` (`id_partner_products`, `products_partner_
 
 CREATE TABLE `products_import_1` (
   `id_products` int(1) NOT NULL,
-  `type_products` int(1) DEFAULT NULL,
+  `type_products` int(255) DEFAULT NULL,
   `name_products` varchar(56) DEFAULT NULL,
   `article_products` int(7) DEFAULT NULL,
   `minimal_cost_products` varchar(7) DEFAULT NULL
@@ -176,13 +176,16 @@ ALTER TABLE `partners_import`
 -- Индексы таблицы `partner_products_import`
 --
 ALTER TABLE `partner_products_import`
-  ADD PRIMARY KEY (`id_partner_products`);
+  ADD PRIMARY KEY (`id_partner_products`),
+  ADD KEY `partner_name_partner_products` (`partner_name_partner_products`),
+  ADD KEY `products_partner_products` (`products_partner_products`);
 
 --
 -- Индексы таблицы `products_import_1`
 --
 ALTER TABLE `products_import_1`
-  ADD PRIMARY KEY (`id_products`);
+  ADD PRIMARY KEY (`id_products`),
+  ADD KEY `type_products` (`type_products`);
 
 --
 -- Индексы таблицы `product_type_import`
@@ -223,6 +226,29 @@ ALTER TABLE `products_import_1`
 --
 ALTER TABLE `product_type_import`
   MODIFY `id_product_type` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `partner_products_import`
+--
+ALTER TABLE `partner_products_import`
+  ADD CONSTRAINT `partner_products_import_ibfk_1` FOREIGN KEY (`partner_name_partner_products`) REFERENCES `partners_import` (`id_partners`),
+  ADD CONSTRAINT `partner_products_import_ibfk_2` FOREIGN KEY (`products_partner_products`) REFERENCES `products_import_1` (`id_products`);
+
+--
+-- Ограничения внешнего ключа таблицы `products_import_1`
+--
+ALTER TABLE `products_import_1`
+  ADD CONSTRAINT `products_import_1_ibfk_1` FOREIGN KEY (`type_products`) REFERENCES `product_type_import` (`id_product_type`);
+
+--
+-- Ограничения внешнего ключа таблицы `product_type_import`
+--
+ALTER TABLE `product_type_import`
+  ADD CONSTRAINT `product_type_import_ibfk_1` FOREIGN KEY (`id_product_type`) REFERENCES `products_import_1` (`id_products`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
