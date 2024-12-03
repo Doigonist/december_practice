@@ -1,10 +1,33 @@
 <?php
 require_once('link.php');
+$ready_to_go = false;
+if ($_SESSION['auth'] == 'admin'){
+    print_r($_SESSION['auth']);
 $res = $link -> query("SELECT * FROM `partners_import`");
 $res_products = $link -> query("SELECT * FROM `partner_products_import`");
 $res_products = $res_products -> fetch_all(MYSQLI_ASSOC);
 $res = $res -> fetch_all(MYSQLI_ASSOC);
+$ready_to_go = true;
+}elseif($_SESSION['auth'] == 'user' ){
+    $email = $_SESSION['login'];
+    print_r($_SESSION['auth']);
+    $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$email'");
+    $res = $res -> fetch_all(MYSQLI_ASSOC);
+    $ready_to_go = true;
+}else{
+    echo 'Авторизации нет!';
+}
 ?>
+<form action="auth-handler.php" method="POST">
+    <label for="login">Введите email</label>
+<input type="text" name="login" id="">
+<label for="password">Введите ИНН</label>
+<input type="password" name="password" id="">
+<input type="submit" value="Войти">
+</form>
+<form action="logout.php">
+    <input type="submit" value="Выйти из аккаунта">
+</form>
 <table border="1px">
 <tr>
     <th>id Партнера</th>
@@ -19,6 +42,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
     <th>скидка для партнера</th>
 </tr>
 <?php
+if($ready_to_go){
 for($i = 0 ; $i < count($res); $i++){
     echo '<tr>';
     echo "<td>" . $res[$i]['id_partners'] . '</td>';
@@ -30,7 +54,10 @@ for($i = 0 ; $i < count($res); $i++){
     echo "<td>" . $res[$i]['address_partners'] . '</td>';
     echo "<td>" . $res[$i]['INN_partners'] . '</td>';
     echo "<td>" . $res[$i]['rating_partners'] . '</td>';
+    echo "<td>" .'0%'. '</td>';
 
+}
 }
 ?>
 </table>
+
