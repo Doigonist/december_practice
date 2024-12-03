@@ -7,12 +7,17 @@ $res = $link -> query("SELECT * FROM `partners_import`");
 $res_products = $link -> query("SELECT * FROM `partner_products_import`");
 $res_products = $res_products -> fetch_all(MYSQLI_ASSOC);
 $res = $res -> fetch_all(MYSQLI_ASSOC);
+$res_skidka = $link -> query("SELECT * FROM `partner_products_import`");
+$res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
 $ready_to_go = true;
 }elseif($_SESSION['auth'] == 'user' ){
     $email = $_SESSION['login'];
     print_r($_SESSION['auth']);
     $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$email'");
     $res = $res -> fetch_all(MYSQLI_ASSOC);
+    $id_partnera = $res['id_partners'];
+    $res_skidka = $link -> query("SELECT * FROM `partner_products_import`");
+    $res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
     $ready_to_go = true;
 }else{
     echo 'Авторизации нет!';
@@ -44,6 +49,15 @@ $ready_to_go = true;
 <?php
 if($ready_to_go){
 for($i = 0 ; $i < count($res); $i++){
+    if($res_skida[$i]['product_count_partner_products'] < 10000){
+        $skidka = 0 . "%";
+    }elseif($res_skida[$i]['product_count_partner_products'] > 10000 and $res_skida[$i]['product_count_partner_products'] < 50000){
+        $skidka = 5 . "%";
+    }elseif($res_skida[$i]['product_count_partner_products'] > 50000 and $res_skida[$i]['product_count_partner_products'] < 300000){
+        $skidka = 10 . "%"; 
+    }elseif($res_skida[$i]['product_count_partner_products'] > 300000){
+        $skidka = 15 . "%"; 
+    }
     echo '<tr>';
     echo "<td>" . $res[$i]['id_partners'] . '</td>';
     echo "<td>" . $res[$i]['type_partner'] . '</td>';
@@ -54,7 +68,7 @@ for($i = 0 ; $i < count($res); $i++){
     echo "<td>" . $res[$i]['address_partners'] . '</td>';
     echo "<td>" . $res[$i]['INN_partners'] . '</td>';
     echo "<td>" . $res[$i]['rating_partners'] . '</td>';
-    echo "<td>" .'0%'. '</td>';
+    echo "<td>" . $skidka ."</td>";
 
 }
 }
