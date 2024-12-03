@@ -10,16 +10,28 @@ if($_SESSION['auth'] == 'user'){
     header('Location: index.php');
 }
 ?>
-<form action="logout.php">
-    <input type="submit" value="Выйти из аккаунта">
-</form>
-<div id="box">
-    <div id="container">
-    <p><?= $res[0]['type_partner']?> | <?= $res[0]['name_partners']?></p>
-    <p><?=$res[0]['director_partners']?><br>
-    <?=$res[0]['tel_partners']?><br>
-     Рейтинг:<?=$res[0]['rating_partners']?><br></p>
-    </div>
-</div>
-
-
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="wrapper-main">
+				<div class="wrapper-main-content-left">
+					<span><?= $res[0]['type_partner']?> | <?= $res[0]['name_partners']?></span>
+					<p><?= $res[0]['director_partners']?></p>
+					<p><?= $res[0]['tel_partners']?></p>
+					<p>Рейтинг: <?= $res[0]['rating_partners']?></p>
+				</div>
+				<div class="wrapper-main-content-right">
+          <span>10%</span>
+        
+        </div>
+			</div>
+		</div>
+	</body>
+</html>
