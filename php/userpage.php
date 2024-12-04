@@ -12,8 +12,16 @@ if($_SESSION['auth'] == 'user'){
 	foreach($res_skidka as $elem){
 		$skidka += $elem['product_count_partner_products']; 
 	}
+	if($skidka < 10000){
+        $skidka_per = 0 . "%";
+    }elseif($skidka > 10000 and $skidka < 50000){
+        $skidka_per = 5 . "%";
+    }elseif($skidka > 50000 and $skidka < 300000){
+        $skidka_per = 10 . "%"; 
+    }elseif($skidka > 300000){
+        $skidka_per = 15 . "%"; 
+    }
     $ready_to_go = true;
-	echo $skidka;
 }else{
     header('Location: index.php');
 }
@@ -27,7 +35,10 @@ if($_SESSION['auth'] == 'user'){
 		<title>Document</title>
 	</head>
 	<body>
-		<div class="wrapper">
+		<button>
+			<a href="logout.php">Выйти</a>
+        </button>
+			<div class="wrapper">
 			<div class="wrapper-main">
 				<div class="wrapper-main-content-left">
 					<span><?= $res[0]['type_partner']?> | <?= $res[0]['name_partners']?></span>
@@ -36,7 +47,7 @@ if($_SESSION['auth'] == 'user'){
 					<p>Рейтинг: <?= $res[0]['rating_partners']?></p>
 				</div>
 				<div class="wrapper-main-content-right">
-          <span>10%</span>
+          <span><?=$skidka_per?></span>
         
         </div>
 			</div>
