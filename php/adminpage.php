@@ -63,7 +63,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
 				echo '</div>';
 				echo '<div class="wrapper-main-content-right">';
                 echo "<span>$skidka</span>";
-        
+                echo '<a href="editform.php">Добавить продажу</a>';
                 echo '</div>';
                 echo '</div>';
             }
