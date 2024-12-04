@@ -11,6 +11,7 @@ if (empty($_SESSION['auth']) && !empty($_POST)){
     $res = $query->fetch_all(MYSQLI_ASSOC);
     $_SESSION['auth'] = 'user';
     $_SESSION['login'] = $login;
+    $_SESSION['partner_id'] = $res['id_partners'];
      header('Location: userpage.php');
     }
 }elseif(!empty($_SESSION['auth'])){
