@@ -1,7 +1,6 @@
 <?php
 require_once('link.php');
 $skidka = 0;
-$ready_to_go = false;
 if($_SESSION['auth'] == 'user'){
     $email = $_SESSION['login'];
     $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$email'");
@@ -21,7 +20,6 @@ if($_SESSION['auth'] == 'user'){
     }elseif($skidka > 300000){
         $skidka_per = 15 . "%"; 
     }
-    $ready_to_go = true;
 }else{
     header('Location: index.php');
 }
