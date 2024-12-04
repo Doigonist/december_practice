@@ -1,11 +1,19 @@
 <?php
 require_once('link.php');
+$skidka = 0;
 $ready_to_go = false;
 if($_SESSION['auth'] == 'user'){
     $email = $_SESSION['login'];
     $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$email'");
     $res = $res -> fetch_all(MYSQLI_ASSOC);
+	$id_partnera_for_skidka = $_SESSION['partner_id'];
+	$res_skidka = $link -> query("SELECT `product_count_partner_products` FROM `partner_products_import` WHERE `partner_name_partner_products` = '$id_partnera_for_skidka'");
+	$res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
+	foreach($res_skidka as $elem){
+		$skidka += $elem['product_count_partner_products']; 
+	}
     $ready_to_go = true;
+	echo $skidka;
 }else{
     header('Location: index.php');
 }
