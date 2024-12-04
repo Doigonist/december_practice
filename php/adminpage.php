@@ -35,6 +35,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
                 $director_partner = $res[$i]['director_partners'];
                 $tel_partner = $res[$i]['tel_partners'];
                 $rating_partners = $res[$i]['rating_partners'];
+                $counter = $i + 1;
                 echo '<div class="wrapper-main">';
 				echo '<div class="wrapper-main-content-left">';
 				echo "<span>$type_partner | $name_partner</span>";
@@ -44,7 +45,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
 				echo '</div>';
 				echo '<div class="wrapper-main-content-right">';
                 echo "<span>$skidka | $copies</span>";
-                echo '<a href="editform.php">Добавить продажу</a>';
+                echo "<a href='editform.php?id=$counter'>Добавить продажу</a>";
                 echo '</div>';
                 echo '</div>';
             }

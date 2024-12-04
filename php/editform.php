@@ -1,7 +1,10 @@
 <?php
-$email = $_SESSION['login'];
-$res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$email'");
+require_once('link.php');
+$id_partnera = $_GET['id'];
+$res = $link -> query("SELECT * FROM `partners_import` WHERE `id_partners` = '$id_partnera'");
 $res = $res -> fetch_all(MYSQLI_ASSOC);
+$res_products = $link -> query("SELECT * FROM `products_import_1`");
+$res_products = $res_products -> fetch_all(MYSQLI_ASSOC);
 require_once('funcs.php');
 ?>
 <!DOCTYPE html>
@@ -25,12 +28,17 @@ require_once('funcs.php');
             <td><?= $res[0]['director_partners']?></td>
             <td><?= countCopies($res[0]['id_partners'])?></td>
             <td><?= countSkidka($res[0]['id_partners'])?></td>
-
         </tr>
     </table>
     <form action="">
         <select name="" id="">
-            <option value=""></option>
+            <?php
+            for($i = 0 ; $i < count($res_products); $i++) {
+                $product = $res_products[$i]['name_products'];
+                $id_prod = $res_products[$i]['id_products'];
+                echo "<option value='$id_prod'>$product</option>";
+            }
+            ?>
         </select>
         <input type="number"name="count" id="count"placeholder="Количество проданных копий">
         <input type="date" name="date" id="date">
