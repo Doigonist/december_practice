@@ -1,5 +1,6 @@
 <?php
 require_once('link.php');
+require_once('funcs.php');
 if ($_SESSION['auth'] == 'admin'){
     print_r($_SESSION['auth']);
 $res = $link -> query("SELECT * FROM `partners_import`");
@@ -26,29 +27,9 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
         </button>
 		<div class="wrapper">
             <?php
-            function countSkidka($id){
-                require('link.php');
-                $skidka = 0;
-                $skidka_per = 0;
-                $id_partnera_for_skidka = $id + 1;
-	            $res_skidka = $link -> query("SELECT `product_count_partner_products` FROM `partner_products_import` WHERE `partner_name_partner_products` = '$id_partnera_for_skidka'");
-	            $res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
-	            foreach($res_skidka as $elem){
-		            $skidka += $elem['product_count_partner_products']; 
-	            }
-	                if($skidka < 10000){
-                         $skidka_per = 0 . "%";
-                    }elseif($skidka > 10000 and $skidka < 50000){
-                        $skidka_per = 5 . "%";
-                    }elseif($skidka > 50000 and $skidka < 300000){
-                        $skidka_per = 10 . "%"; 
-                    }elseif($skidka > 300000){
-                        $skidka_per = 15 . "%"; 
-                    }
-                    return $skidka_per . " | " . $skidka;
-            }
             for($i = 0; $i < count($res); $i++) {
                 $skidka = countSkidka($i);
+                $copies = countCopies($i);
                 $type_partner = $res[$i]['type_partner'];
                 $name_partner = $res[$i]['name_partners'];
                 $director_partner = $res[$i]['director_partners'];
@@ -62,7 +43,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
 				echo "<p>Рейтинг: $rating_partners</p>";
 				echo '</div>';
 				echo '<div class="wrapper-main-content-right">';
-                echo "<span>$skidka</span>";
+                echo "<span>$skidka | $copies</span>";
                 echo '<a href="editform.php">Добавить продажу</a>';
                 echo '</div>';
                 echo '</div>';
