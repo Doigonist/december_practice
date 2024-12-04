@@ -5,10 +5,11 @@ body, html{
 }
 .wrapper{
   width: 600px;
-  height: ;
+  height: 100%;
   border: 1px solid black;
   display: flex;
   justify-content: center;
+  flex-direction : column;
 }
 .wrapper-main{
   margin: 20px;
