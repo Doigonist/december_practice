@@ -16,7 +16,7 @@ require_once('funcs.php');
 </head>
 <body>
     <h1>Форма для добавления продажи</h1>
-    <table>
+    <table border="5px">
         <tr>
             <th>Компания</th>
             <th>Директор</th>
