@@ -46,6 +46,7 @@ if($_SESSION['auth'] == 'user'){
 				</div>
 				<div class="wrapper-main-content-right">
           <span><?=$skidka_per?></span>
+		  <a href='editform.php?id=<?=$res[0]['id_partners']?>'>Добавить продажу</a>
         
         </div>
 			</div>
