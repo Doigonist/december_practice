@@ -3,7 +3,7 @@ function countSkidka($id){
     require('link.php');
     $skidka = 0;
     $skidka_per = 0;
-    $id_partnera_for_skidka = $id + 1;
+    $id_partnera_for_skidka = $id;
     $res_skidka = $link -> query("SELECT `product_count_partner_products` FROM `partner_products_import` WHERE `partner_name_partner_products` = '$id_partnera_for_skidka'");
     $res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
     foreach($res_skidka as $elem){
@@ -23,7 +23,7 @@ function countSkidka($id){
 function countCopies($id){
     require('link.php');
     $skidka = 0;
-    $id_partnera = $id + 1;
+    $id_partnera = $id;
     $res_skidka = $link -> query("SELECT `product_count_partner_products` FROM `partner_products_import` WHERE `partner_name_partner_products` = '$id_partnera'");
     $res_skidka = $res_skidka -> fetch_all(MYSQLI_ASSOC);
     foreach($res_skidka as $elem){

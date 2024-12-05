@@ -28,8 +28,8 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
 		<div class="wrapper">
             <?php
             for($i = 0; $i < count($res); $i++) {
-                $skidka = countSkidka($i);
-                $copies = countCopies($i);
+                $skidka = countSkidka($i + 1);
+                $copies = countCopies($i + 1);
                 $type_partner = $res[$i]['type_partner'];
                 $name_partner = $res[$i]['name_partners'];
                 $director_partner = $res[$i]['director_partners'];

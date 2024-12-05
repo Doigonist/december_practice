@@ -1,11 +1,15 @@
 <?php
 require_once('link.php');
+require_once('funcs.php');  
 $id_partnera = $_GET['id'];
 $res = $link -> query("SELECT * FROM `partners_import` WHERE `id_partners` = '$id_partnera'");
 $res = $res -> fetch_all(MYSQLI_ASSOC);
 $res_products = $link -> query("SELECT * FROM `products_import_1`");
 $res_products = $res_products -> fetch_all(MYSQLI_ASSOC);
-require_once('funcs.php');
+$copies = countCopies($id_partnera);
+$skidka = countSkidka($id_partnera);
+$get_date = date('d.m.Y');
+echo $get_date;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +30,13 @@ require_once('funcs.php');
         <tr>
             <td><?= $res[0]['name_partners']?></td>
             <td><?= $res[0]['director_partners']?></td>
-            <td><?= countCopies($res[0]['id_partners'])?></td>
-            <td><?= countSkidka($res[0]['id_partners'])?></td>
+            <td><?=$copies?></td>
+            <td><?=$skidka?></td>
         </tr>
     </table>
-    <form action="">
-        <select name="" id="">
+    <br>
+    <form action="addrecord.php" method="POST">
+        <select name="select" id="">
             <?php
             for($i = 0 ; $i < count($res_products); $i++) {
                 $product = $res_products[$i]['name_products'];
@@ -41,7 +46,8 @@ require_once('funcs.php');
             ?>
         </select>
         <input type="number"name="count" id="count"placeholder="Количество проданных копий">
-        <input type="date" name="date" id="date">
+        <input type="hidden" name="date" id="date" value ="<?=$get_date?>">
+        <input type="hidden" name="partner" value="<?=$id_partnera?>">
         <button type="submit">Добавить продажу</button>
     </form>
 </body>
