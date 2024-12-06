@@ -37,5 +37,6 @@ if (empty($_SESSION['auth']) or $_SESSION['auth'] == 'kurator'){
             <td><?=CalculateRating($sredniy)?></td>
         </tr>
     </table>
+    <a href="logout.php">Выйти</a>
 </body>
 </html>
