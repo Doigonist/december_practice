@@ -1,9 +1,10 @@
 <?php
 require_once('link.php');
-if ($_SESSION['auth'] == 'user'){
+error_reporting(0);
+if (!empty($_SESSION['auth']) && $_SESSION['auth'] == 'user'){
     header('Location: userpage.php');
 
-}elseif ($_SESSION['auth'] == 'admin'){
+}elseif (!empty($_SESSION['auth']) && $_SESSION['auth'] == 'admin'){
     header('Location: adminpage.php');
 }
 ?>

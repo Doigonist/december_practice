@@ -1,21 +1,23 @@
 <?php
 require_once('link.php');
-if (empty($_SESSION['auth']) && !empty($_POST)){
     $login = $_POST['login'];
     $password = $_POST['password'];
-    if ($_POST['login'] == 'admin' && $_POST['password'] == '123456'){
-        $_SESSION['auth'] = 'admin';
-        header('Location: adminpage.php');
-    }else{
-    $query = $link->query("SELECT * FROM `partners_import` WHERE `email_partners` = '$login' AND `INN_PARTNERS` = '$password'");
-    $res = $query->fetch_all(MYSQLI_ASSOC);
-    $_SESSION['auth'] = 'user';
-    $_SESSION['login'] = $login;
-    $_SESSION['partner_id'] = $res[0]['id_partners'];
-     header('Location: userpage.php');
+    if (empty($_SESSION['auth']) && !empty($_POST)){
+        $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$login' AND `INN_partners` = '$password'");
+        $res = $res -> fetch_all(MYSQLI_ASSOC);
+        if (count($res) > 0){
+            $_SESSION['auth'] = 'user';
+            $_SESSION['login'] = $login;
+            $_SESSION['partner_id'] = $res[0]['id_partners'];
+            header('Location: userpage.php');
+        }elseif($login == 'admin' and $password == '123456'){
+            $_SESSION['auth'] = 'admin';
+            header('Location: adminpage.php');
+        }else{
+            header('Location: index.php');
+        }
     }
-}elseif(!empty($_SESSION['auth'])){
-    echo 'Вы уже авторизированы!';
-    header('Location: index.php');
-}
-?>
+
+
+?> 
+
