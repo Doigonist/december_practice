@@ -1,7 +1,7 @@
 <?php
 require_once('link.php');
-    $login = $_POST['login'];
-    $password = $_POST['password'];
+    $login = htmlspecialchars($_POST['login']);
+    $password = htmlspecialchars($_POST['password']);
     if (empty($_SESSION['auth']) && !empty($_POST)){
         $res = $link -> query("SELECT * FROM `partners_import` WHERE `email_partners` = '$login' AND `INN_partners` = '$password'");
         $res = $res -> fetch_all(MYSQLI_ASSOC);
