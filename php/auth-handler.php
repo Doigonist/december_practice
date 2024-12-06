@@ -16,6 +16,8 @@ require_once('link.php');
         }else{
             header('Location: index.php');
         }
+    }else{
+        header('Location: index.php');
     }
 
 
