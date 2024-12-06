@@ -9,14 +9,13 @@ require_once('link.php');
         $res_student = $res_student -> fetch_all(MYSQLI_ASSOC);
         if (count($res_kurator) > 0){
             $_SESSION['auth'] = 'kurator';
-            $_SESSION['kurator-id'] = $res_kurator[0]['id-kurator'];
+            $_SESSION['id'] = $res_kurator[0]['id-kurator'];
             header('Location: kurator-page.php');
         }elseif(count($res_student) > 0){
             $_SESSION['auth'] = 'student';
+            $_SESSION['id'] = $res_student[0]['id-student'];
             header('Location: student-page.php');
         }
-    }else{
-        header('Location: index.php');
     }
 
 

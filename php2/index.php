@@ -19,9 +19,9 @@ if (!empty($_SESSION['auth']) && $_SESSION['auth'] == 'student'){
     <h1>Форма авторизации</h1>
     <form action="auth-handler.php" method="POST">
         <label for="login">Введите логин</label>
-        <input type="text" name="login" id="">
+        <input type="text" name="login" id="login">
         <label for="password">Введите пароль</label>
-        <input type="password" name="password">
+        <input type="password" name="password" id="password">
         <input type="submit" value="Отправить">
     </form>
 </body>
