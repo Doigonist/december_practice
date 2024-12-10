@@ -1,7 +1,9 @@
 <?php
 require_once('link.php');
+require_once('funcs.php');
 $res = $link -> query("SELECT * FROM `civilian`");
 $res = $res -> fetch_all(MYSQLI_ASSOC);
+countCity(1,$link);
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +21,18 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
         <th>Статус</th>
         <th>Адресс</th>
         <th>Профессия</th>
+        <th>Тип города</th>
+        <th>Изменить</th>
+        <th><a href="addcivilian.php">Добавить жителя</a></th>
         </tr>
         <?php
         for($i=0; $i < count($res); $i++){
+            if($i>0){
+            $id_people = $res[$i]['id_people'];
+            }
             $id_status = $res[$i]['status_people'];
             $id_adress = $res[$i]['adress_people'];
+            $type = countCity($id_adress, $link);
             $id_post = $res[$i]['post_people'];
             $status_query = $link -> query("SELECT `status` FROM `status` WHERE `id_status` = '$id_status'");
             $status_query = $status_query -> fetch_all(MYSQLI_ASSOC);
@@ -39,10 +48,13 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
             echo '<td>' . $status_query . '</td>';
             echo '<td>'.$adress_query.'</td>';
             echo '<td>'.$post_query.'</td>';
+            echo '<td>'.$type.'</td>';
+            if($i > 0){
+            echo '<td>' . "<a href='editcivilian.php?id=$id_people'>Изменить</a>" . " " . "<a href='deletecivilian.php?id=$id_people'>Удалить</a>" . '</td>';
+            }
             echo '</tr>';
         }
         ?>
-        
     </table>
 <a href="logout.php">Выйти</a>
 </body>

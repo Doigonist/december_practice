@@ -1,11 +1,13 @@
 <?php
 require_once('link.php');
+if (isset($_SESSION['auth'])){
 if($_SESSION['auth'] == 'Губернатор'){
     header('Location: gubernator-page.php');
 }elseif ($_SESSION['auth'] == 'Мэр'){
     header('Location: mayor-page.php');
 }elseif($_SESSION['auth'] == 'Житель'){
     header('Location: civilian-page.php');
+}
 }
 ?>
 <!DOCTYPE html>
