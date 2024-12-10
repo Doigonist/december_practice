@@ -50,7 +50,7 @@ countCity(1,$link);
             echo '<td>'.$post_query.'</td>';
             echo '<td>'.$type.'</td>';
             if($i > 0){
-            echo '<td>' . "<a href='editcivilian.php?id=$id_people'>Изменить</a>" . " " . "<a href='deletecivilian.php?id=$id_people'>Удалить</a>" . '</td>';
+            echo '<td>' . "<a href='editcivilian.php?id=$id_people'>Изменить</a>" . " " . "<a href='delete-handler.php?id=$id_people'>Удалить</a>" . '</td>';
             }
             echo '</tr>';
         }

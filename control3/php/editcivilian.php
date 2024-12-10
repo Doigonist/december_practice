@@ -37,6 +37,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
             <option value="3">Рабочий</option>
             <option value="4">Ученый</option>
         </select>
+        <input type="hidden" name="id" value="<?=$id?>">
         <input type="submit">
     </form>
     <br>
