@@ -17,3 +17,6 @@ form{
     align-items: center;
     justify-content: center;
 }
+input{
+    padding: 4px;
+}
