@@ -12,6 +12,7 @@ require_once('link.php');
             $status = $status -> fetch_all(MYSQLI_ASSOC);
             $_SESSION['auth'] = $status[0]['status'];
             $_SESSION['id'] = $res[0]['id_people'];
+            $_SESSION['city'] = $res[0]['adress_people'];
             header('Location: index.php'); 
         }elseif(count($res) <= 0){
             header("Location: index.php");

@@ -22,11 +22,15 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
             ?>
             <option value="3">Житель</option>
         </select>
-        <select name="adress" id="">
+        <?php if($_SESSION['auth'] == "Губернатор"){
+         $html = '<select name="adress" id="">
             <option value="1">Калининград</option>
             <option value="2">Черняховск</option>
             <option value="3">Балтийск</option>
-        </select>
+        </select>';
+        echo $html;
+        }
+        ?>
         <select name="post" id="">
             <?php
             if ($_SESSION['auth'] == 'Губернатор'){

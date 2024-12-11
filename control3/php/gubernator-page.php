@@ -3,7 +3,6 @@ require_once('link.php');
 require_once('funcs.php');
 $res = $link -> query("SELECT * FROM `civilian`");
 $res = $res -> fetch_all(MYSQLI_ASSOC);
-countCity(1,$link);
 ?>
 
 <!DOCTYPE html>
