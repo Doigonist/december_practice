@@ -16,6 +16,7 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
 <body>
     <table>
         <tr>
+        <th>Аватар</th>
         <th>ФИО</th>
         <th>Статус</th>
         <th>Адресс</th>
@@ -29,6 +30,8 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
             if($i>0){
             $id_people = $res[$i]['id_people'];
             }
+            $img = $res[$i]['img_path_people'];
+            
             $id_status = $res[$i]['status_people'];
             $id_adress = $res[$i]['adress_people'];
             $type = countCity($id_adress, $link);
@@ -43,6 +46,11 @@ $res = $res -> fetch_all(MYSQLI_ASSOC);
             $post_query = $post_query -> fetch_all(MYSQLI_ASSOC);
             $post_query = $post_query[0]['post'];
             echo '<tr>';
+            if ($img != ''){
+            echo '<td>' . "<a href='showimg.php?href=$img'><img src='$img' width='128' height = '128'></a>" . "</td>";
+            }else{
+                echo '<td>' . "Картинка отсутсвует" . '</td>';
+            }
             echo '<td>' . $res[$i]['fio_people'] . '</td>';
             echo '<td>' . $status_query . '</td>';
             echo '<td>'.$adress_query.'</td>';

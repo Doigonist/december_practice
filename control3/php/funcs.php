@@ -37,4 +37,27 @@ function countCity($city, $link){
         }
     }
 }
+  function can_upload($file){
+    if($file['name'] == ''){
+		return 'Вы не выбрали файл.';
+    }
+	if($file['size'] == 41943040){
+		return 'Файл слишком большой.';
+    }
+	$arr_file = explode('.', $file['name']);
+	$arr = strtolower(end($arr_file));
+	$types = ['jpg', 'png', 'gif', 'bmp', 'jpeg'];
+	
+	if(!in_array($arr, $types)){
+		return 'Недопустимый тип файла.';
+    }
+	return true;
+  }
+  
+  function make_upload($file , $id , $link){	
+	$name = mt_rand(0, 10000) . $file['name'];
+	copy($file['tmp_name'], 'img/' . $name);
+    $path = 'img/' . $name;
+    $res = $link -> query("UPDATE `civilian` SET `img_path_people`='$path' WHERE `id_people` = '$id'");
+  }
 ?>

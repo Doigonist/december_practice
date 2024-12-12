@@ -19,6 +19,7 @@ $arr = ["Этот текст создан для отвлечения внима
 <body>
     <table>
         <tr>
+        <th>Аватар</th>
         <th>ФИО</th>
         <th>Статус</th>
         <th>Адресс</th>
@@ -27,6 +28,7 @@ $arr = ["Этот текст создан для отвлечения внима
         </tr>
         <?php
         for($i=0; $i < count($res); $i++){
+            $img = $res[$i]['img_path_people'];
             $id_status = $res[$i]['status_people'];
             $id_adress = $res[$i]['adress_people'];
             $type = countCity($id_adress, $link);
@@ -41,6 +43,7 @@ $arr = ["Этот текст создан для отвлечения внима
             $post_query = $post_query -> fetch_all(MYSQLI_ASSOC);
             $post_query = $post_query[0]['post'];
             echo '<tr>';
+            echo '<td>' . "<a href='showimg.php?href=$img'><img src='$img' width='128' height = '128'></a>" . "</td>";
             echo '<td>' . $res[$i]['fio_people'] . '</td>';
             echo '<td>' . $status_query . '</td>';
             echo '<td>'.$adress_query.'</td>';
@@ -51,5 +54,6 @@ $arr = ["Этот текст создан для отвлечения внима
         ?>
     </table>
 <a href="logout.php">Выйти</a>
+<a href="add-image.php?id=<?=$id_civilian?>">добавить картинку</a>
 </body>
 </html>
