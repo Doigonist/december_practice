@@ -1,11 +1,9 @@
 <?php
 
     $link = new mysqli('localhost' , 'root', '','december_practice4');
-    $json = json_decode(file_get_contents('php://input') , true);
-    
-    $login = $json['login'];
-    $password = $json['password'];
-if(!empty(file_get_contents('php://input'))){
+ if (isset($_GET['login']) && isset($_GET['pass'])){
+    $login = $_GET['login'];
+    $password = $_GET['pass'];
     // echo 'Данные формы пришли успешно! Логин : ' . $_POST['login'] . ' a пароль - ' . $_POST['password'];
     if ($login == 'admin' && $password == 'admin'){
         echo '<img src="https://media.tenor.com/lJ_LFPgMSzUAAAAi/niko-niko-oneshot.gif" alt="">';

@@ -1,17 +1,26 @@
 <?php
 
-    $link = new mysqli('localhost' , 'root', '','december_practice2');
+    $link = new mysqli('localhost' , 'root', '','december_practice4');
 if (isset($_POST['login']) && isset($_POST['password'])){
     // echo 'Данные формы пришли успешно! Логин : ' . $_POST['login'] . ' a пароль - ' . $_POST['password'];
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $res = $link -> query("SELECT * FROM `student` WHERE `login-student` = '$login' AND `password-student` = '$password'");
-    $res = $res -> fetch_all(MYSQLI_ASSOC);
-    if (count($res) > 0){
-        echo 'Пользователь найден!';
+    if ($login == 'admin' && $password == 'admin'){
+       echo 2;
     }else{
-        $res = $link -> query("INSERT INTO `student`(`student-group`, `student-name`, `login-student`, `password-student`, `book-student`) VALUES ('1','TEST','$login','$password','TEST')");
-        echo 'Пользователь не был найден в базе данных вследствии чего был зарегестрирован на сайте.';
+        $res = $link -> query("SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+        $res = $res -> fetch_all(MYSQLI_ASSOC);
+        if (count($res) > 0){
+            $arr = [];
+            array_push($arr , $login);
+            array_push($arr , $password);
+            array_push($arr , $res[0]['email']);
+            $arr = json_encode($arr);
+            print_r($arr);
+        }else{
+        $res = $link -> query("INSERT INTO `users`(`login`, `password`, `email`) VALUES ('$login','$password','example@mail.com')");
+        echo 1;
+        }
     }
 }
 ?>
