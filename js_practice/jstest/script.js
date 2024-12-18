@@ -22,11 +22,11 @@ async function POST_DATA() {
 
     let txt = await res.text();
     if (txt == 1){
-        div.innerHTML = txt;
+        div.innerHTML = 'Юзер не был найден в базе данных!(зарегистрирован)';
     }else if(txt == 2){
         div.innerHTML = '<img src="https://media.tenor.com/lJ_LFPgMSzUAAAAi/niko-niko-oneshot.gif" alt=""><h1>Cool IMG from ajax</h1>'
     }else{
-     init_table(JSON.parse(txt)); 
+     init_table(JSON.parse(txt));
     }
 }
 button.addEventListener('click', (e)=>{

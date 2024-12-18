@@ -3,14 +3,14 @@
     $link = new mysqli('localhost' , 'root', '','december_practice4');
 if (isset($_POST['login']) && isset($_POST['password'])){
     // echo 'Данные формы пришли успешно! Логин : ' . $_POST['login'] . ' a пароль - ' . $_POST['password'];
-    $login = $_POST['login'];
-    $password = $_POST['password'];
+    $login = htmlspecialchars($_POST['login']);
+    $password = htmlspecialchars($_POST['password']);
     if ($login == 'admin' && $password == 'admin'){
        echo 2;
     }else{
         $res = $link -> query("SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
-        $res = $res -> fetch_all(MYSQLI_ASSOC);
-        if (count($res) > 0){
+        if ($res -> num_rows > 0){
+            $res = $res -> fetch_all(MYSQLI_ASSOC);
             $arr = [];
             array_push($arr , $login);
             array_push($arr , $password);
