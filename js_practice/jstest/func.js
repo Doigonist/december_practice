@@ -1,5 +1,5 @@
 
-let copied = false;
+var copied = false;
 async function POST_DATA(register) {
     let login = document.querySelector('input[type=text]');
     let password = document.querySelector('input[type=password]');
@@ -36,6 +36,7 @@ async function POST_DATA(register) {
         })
     }else if (txt == 3){
         document.body.innerHTML = login_form;
+        copied = false;
     }
 }
 // async function JSON_DATA(register) {
