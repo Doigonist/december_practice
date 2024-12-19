@@ -2,3 +2,31 @@
 	margin: 0;
 	padding: 0;
 }
+body,html{
+	height: 100%;
+}
+body{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 25px;
+}
+form{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	width: 250px;
+}
+div{
+	display: flex;
+	flex-direction: row;
+}
+input{
+	padding: 10px;
+}
+button{
+	padding: 5px;
+}

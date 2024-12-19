@@ -1,2 +1,2 @@
 <?php
-$link = new mysqli('localhost' , 'root', '','december_practice2');
+$link = new mysqli('localhost' , 'root', '','december_practice4');
