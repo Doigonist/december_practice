@@ -39,6 +39,16 @@ async function POST_DATA(register) {
         copied = false;
     }
 }
+async function check(value_to_check) {
+    val = value_to_check;
+    let res = await fetch('http://decemberpractice/js_practice/jstest/ajax_check.php',{
+        method: 'POST',
+        header: {'Content-Type' : 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({'val' : val})
+    });
+    txt = await res.text();
+}
+
 // async function JSON_DATA(register) {
 //     let res = await fetch('http://decemberpractice/js_practice/jstest/ajax_json.php', {
 //         method: 'POST',
