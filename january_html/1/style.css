@@ -1,4 +1,7 @@
-.container{
-    height: 50px;
+.cool{
+    min-height: 350px;
     background-color: violet;
+}
+.row{
+    min-height: 350px;
 }
