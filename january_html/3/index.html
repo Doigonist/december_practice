@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+        <!-- <h1 class="text-center text-info mb-5 pt-3 mb-5">🤡💀😯💀🤡 Я ВСЁ СПИСЫВАЮ У СОСЕДА! 🤡💀😯💀🤡</h1>
+        <div class="row">
+            <input type="color" name="" id="">
+            <img src="мага.PNG" alt="">
+        </div>  -->
+        <form class="container-sm bg-white p-3 was-validated">
+            <h1 class="text-center">Cool Form</h1>
+            <div class="position-relative m-3">
+                <input type="text" name="" id="login" class="form-control" placeholder="login" pattern="[А-Яа-яёЁ]+" >
+                <div class="invalid-tooltip"> 
+                    В логине может содержаться только кириллица.
+                </div>
+            </div>
+            <div class="position-relative m-3">
+            <input type="password" name="" id="pass" class="form-control" placeholder="pass"  pattern="[0-9]+" >
+            <div class="invalid-feedback">В пароле могут содержаться только символы от 0 до 9.</div>
+            </div>
+            <div class="position-relative m-3">
+            <input type="email" name="" id="email" class="form-control" placeholder="email" >
+            <div class="invalid-feedback">Почта обязательна должна быть вида example@mail.com.</div>
+            </div>
+            <div class=" text-center">
+                <input type="submit" class="btn btn-primary">
+            </div>
+        </form>
+
+
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
