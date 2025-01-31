@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="app">
+    <!-- <h1>
+        Крутой генератор
+    </h1>
+    <input type="text" placeholder="введите количество колонок" v-bind:value ="cols" v-on:input="getCols">
+    <input type="text" placeholder="введите количество строк" v-bind:value ="rows" v-on:input="getRows">
+    <button v-on:click="generateTable">Начать генерацию</button>
+    <table></table> -->
+    <input type="number" v-bind:placeholder="placeholder1" v-model="Firstyear">
+    <input type="number" v-bind:placeholder="placeholder2" v-model="LastYear">
+    <input type="submit" value="Посчитать" @click="calculateLeapYears($event)">
+    <button @click="test()">Очистить</button>
+    <ul v-if ="Permission_for_li == true">
+        <li v-for="year in LeapYear">{{ year }}</li>
+        <h1 v-if="LeapYearCount <= 0">Високосных годов нет.</h1>
+        <h1 v-else>Количество високосных годов : {{LeapYearCount}}</h1>
+    </ul>
+    <script src="vue.global.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
