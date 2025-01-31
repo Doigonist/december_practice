@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="app">
+    <h1>
+        Список задач
+    </h1>
+    <input type="text" v-model="Task">
+    <select name="select_list" v-model="TagForTasks">
+        <option value="1">Работа</option>
+        <option value="2">Личное</option>
+        <option value="3">Покупки</option>
+    </select>
+    <button @click="addTask">Добавить</button>
+    <div v-if="tasks > 0">
+        <div v-if="Work.length">
+            <h2>Работа({{Work.length}})</h2>
+            <ul>
+                <li v-for="task in Work"><p>{{ task }}</p><button @click="Work.splice(task.id, 1)">Удалить</button></li>
+            </ul>
+        </div>
+        <div v-if="Personal.length">
+            <h2>Личное({{Personal.length}})</h2>
+            <ul>
+                <li v-for="task in Personal"><p>{{ task }}</p><button @click="Personal.splice(task.id, 1)">Удалить</button></li>
+            </ul>
+        </div>
+        <div v-if="Purchases.length">
+            <h2>Покупки{{Purchases.length}}</h2>
+            <ul>
+                <li v-for="task in Purchases"><p>{{ task }}</p><button @click="Purchases.splice(task.id, 1)">Удалить</button></li>
+            </ul>
+        </div>
+    </div>
+    <script src="vue.global.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
