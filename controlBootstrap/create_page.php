@@ -29,11 +29,10 @@ if(file_exists($filename)){
 $res = $link->query("INSERT INTO `pages`(`page_name`, `title`, `filename`) VALUES ('$page_name','$title','$filename')");
 if ($res){
     header("Location: index.php");
-    $link->close();
 }else{
     echo "Что-то пошло не так!";
     echo $link->error;
 }
-
+$link->close();
 
 

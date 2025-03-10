@@ -9,9 +9,9 @@ if(isset($_SESSION['auth'])){
     if($result->num_rows > 0){
         $_SESSION['auth'] = true;
         header('Location: index.php');
-        $link->close();
     }else{
         echo "Неверный логин или пароль.";
         $link->error;
     }
 }
+$link->close();

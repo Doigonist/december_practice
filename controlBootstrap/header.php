@@ -34,6 +34,7 @@ require_once('config.php');
         }else{
           echo "<a class='nav-link' data-bs-toggle='modal' data-bs-target='#exampleModal'>Авторизация</a>";
         }
+        $link->close();
         ?>
       </div>
     </div>
