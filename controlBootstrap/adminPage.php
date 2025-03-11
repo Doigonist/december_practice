@@ -1,4 +1,5 @@
 <?php
+require_once('config.php');
 require_once('header.php');
 ?>
 <!DOCTYPE html>
@@ -30,5 +31,52 @@ require_once('header.php');
   <button type="submit" class="btn btn-primary mb-3">Создать</button>
 </form>
     </div>
+  <div class="container">
+    <h1>Созданные страницы</h1>
+    <?php
+    $i = 0;
+    $res = $link->query("SELECT * FROM `pages`");
+    $res = $res->fetch_all(MYSQLI_ASSOC);
+    foreach($res as $page){
+      echo "<div class='mb-3 pt-2'>";
+      echo "<form action='change_logic.php' method='POST'>";
+      echo "<input type='text' id='site_name' name='site_name' сlass='form-control'  value='" .$page['page_name'] ."'>";
+      echo "<input type='text' id='filename' сlass='form-control'  name='filename' value='".$page['filename']."'>";
+      echo "<button id='deletebutton' class='btn btn-danger'>Удалить</button>";
+      echo "<input type='submit' class='btn btn-primary'value='Изменить'><br><hr>";
+      echo "</form>";
+      echo "</div>";
+    }
+    ?>
+  </div>
+    <script>
+      'use strict';
+let deletebuttons = document.querySelectorAll('#deletebutton');
+deletebuttons.forEach(el => {
+
+  el.addEventListener('click',async (e)=>{
+    e.preventDefault();
+    let form = el.parentNode;
+    let name = form.querySelector('#site_name').value;
+    let filename = form.querySelector('#filename').value;
+    Delete(name,filename)
+  });
+});
+
+async function Delete(name,filename) {
+     let txt = await fetch("delete_logic.php", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        sitename : name,
+        filename : filename,
+      }),
+    });
+    let response = await txt.text();
+    window.location.reload();
+}
+    </script>
 </body>
 </html>

@@ -8,7 +8,7 @@ require_once('header.php');
         <title>Document</title>
     </head>
     <body>
-        <h1>Этот текст был написан в инпуте а оказался на сайте. Как круто!</h1>
+        <h1>123</h1>
     </body>
     </html>
     <?php

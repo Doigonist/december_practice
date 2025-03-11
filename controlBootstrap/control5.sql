@@ -32,7 +32,7 @@ CREATE TABLE `pages` (
   `page_name` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `pages`
@@ -52,7 +52,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `login` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `users`
